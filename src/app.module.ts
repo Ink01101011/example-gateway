@@ -6,14 +6,14 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
   imports: [
     ClientsModule.register([
       {
-        name: "EXAMPLE_MICROSERVICES",
+        name: 'EXAMPLE_MICROSERVICES',
         transport: Transport.TCP,
         options: {
-          host: "127.0.0.1",
-          port: 8877
-        }
-      }
-    ])
+          host: process.env.USER_SERVICE_HOST || 'localhost',
+          port: parseInt(process.env.USER_SERVICE_PORT!, 10) || 8877,
+        },
+      },
+    ]),
   ],
   controllers: [AppController],
 })
