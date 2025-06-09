@@ -1,8 +1,10 @@
-import { Controller, Get, Inject } from '@nestjs/common';
+import { Controller, Get, Inject, UseInterceptors } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
 import { Observable } from 'rxjs';
+import { CommonLoggingInterceptor } from './common/common.service';
 
 @Controller()
+@UseInterceptors(CommonLoggingInterceptor)
 export class AppController {
   constructor(
     @Inject('EXAMPLE_MICROSERVICES') private readonly userServiceClient: ClientProxy,
